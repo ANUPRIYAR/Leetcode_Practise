@@ -3,7 +3,7 @@ class Solution:
         bill_counter = dict()
         bill_counter[5] = bill_counter[10] = bill_counter[20] = 0
 
-        for i, bill in enumerate(bills):
+        for  bill in bills:
             
             if bill != 5:
                 change = bill - 5

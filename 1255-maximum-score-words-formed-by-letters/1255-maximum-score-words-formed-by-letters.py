@@ -39,6 +39,8 @@ class Solution:
                 # Retrack back
                 for char in word:
                     letter_map[char] += 1
+
+                return maxscore
                 
         
         maxscore = 0

@@ -12,7 +12,7 @@ class Solution:
                 x_value = x[0] + y[0] - prev[0] + x_map.get(grid[i][j], 0)
                 y_value = x[1] + y[1]- prev[1] + y_map.get(grid[i][j], 0)
                 ps[i][j] = [x_value, y_value]
-        print(ps)
+        # print(ps)
 
         count = 0
         for i in range(rows):

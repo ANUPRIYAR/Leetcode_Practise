@@ -9,12 +9,8 @@ class Solution:
         
         while start <= end:
             if currentEnergy >= enemyEnergies[start]:
-                # currentEnergy -= enemyEnergies[start]
-                # if currentEnergy // enemyEnergies[start] >= 1
                 points += currentEnergy// enemyEnergies[start]
                 currentEnergy = currentEnergy % enemyEnergies[start]
-                print(currentEnergy)
-                # points += 1
             elif points > 0 and currentEnergy < enemyEnergies[start]:
                 currentEnergy += enemyEnergies[end]
                 end -= 1

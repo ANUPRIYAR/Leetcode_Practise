@@ -5,8 +5,8 @@ class Solution:
             if target < 0 : return 
             
             if target == 0:
-                if current not in result:
-                    result.append(current[:])
+                # if current not in result:
+                result.append(current[:])
                 return 
 
             # pick this 
@@ -22,6 +22,9 @@ class Solution:
 
                 # backtracking
                 current.pop()
+
+            # # not pick this 
+            # backtrack(index + 1, result, current, target)
 
         result = []
         candidates.sort()

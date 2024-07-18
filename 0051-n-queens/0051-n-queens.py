@@ -19,9 +19,7 @@ class Solution:
 
     def solveNQueens(self, n: int) -> List[List[str]]:
         ans = []
-        board = ['.'*n for _ in range(n)]
-        print(board)
-        
+        board = ['.'*n for _ in range(n)]        
         leftrow = [0]*n
         upperdiagonal = [0]*(2*n-1)
         lowerdiagonal = [0]*(2*n-1)

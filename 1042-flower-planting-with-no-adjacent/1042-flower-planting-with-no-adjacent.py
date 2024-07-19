@@ -5,8 +5,8 @@ class Solution:
             graph[a].append(b)
             graph[b].append(a)
 
-        if paths == []:
-            return [1]*n
+        # if paths == []:
+        #     return [1]*n
 
         def backtrack(node, color_map):
             if node == n + 1:

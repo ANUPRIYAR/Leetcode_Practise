@@ -8,7 +8,7 @@ class Solution:
                 if nums[j] < 0:
                     is_neg = is_neg + 1
                 
-                if nums[j] & (1<<i):
+                if abs(nums[j]) & (1<<i):
                     count += 1
                     
             if count % 3 == 1:

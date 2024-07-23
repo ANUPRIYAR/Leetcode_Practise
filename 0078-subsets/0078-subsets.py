@@ -1,22 +1,16 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        def backtrack(index, result, current):
-            if index == len(nums):
-                result.append(current[:])
-                return
+        n = len(nums)
+        subsets = []
 
+        for mask in range(1<<n):
+            subset = []
+            for i in range(n):
+                if mask &( 1<< i):
+                    subset.append(nums[i])
 
-            # pick this
-            current.append(nums[index])
-            backtrack(index + 1, result, current)
-            current.pop()
+            subsets.append(subset[:])
 
-            # not pick this 
-            backtrack(index + 1, result, current)
+        return subsets
 
-
-        result = []
-        backtrack(0, result, [])
-        return result
-        
         

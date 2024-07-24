@@ -9,11 +9,11 @@ class Solution:
                 # print("one found")   # i= 3
                 ones += 1   
                 # print(f"ones: {ones}")
-            elif i < len(s) - 1 and s[i] == '0' and s[i + 1] == '0':
-                pass
+            # elif i < len(s) - 1 and s[i] == '0' and s[i + 1] == '0':
+            #     pass
                 # print(f" double 0 found")
                 
-            elif (i < len(s) - 1 and s[i] == '0' and s[i +1] == '1' ) or s[i] == '0':
+            elif (i < len(s) - 1 and s[i] == '0' and s[i +1] == '1' ) or (i==len(s)-1 and s[i] == '0'):
                 # print(F"01 PAIR FOUND")
                 max_moves += ones
                 # print(f"max_moves updated :{max_moves} ones was:{ones}")

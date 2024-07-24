@@ -50,13 +50,6 @@ class RangeFreqQuery:
         right_freq = self.queryfreq(arr, right_child, mid + 1, end, l, r, key)
         return left_freq + right_freq
 
-        # if l > mid:
-        #     queryfreq(arr, 2*idx + 2, mid + 1, end, l, r, key )
-        # elif r <= mid:
-        #     queryfreq(arr, 2*idx + 1, start, mid, l, r, key)
-        # else:
-        #     return self.queryrange(arr, 2*idx + 1, start, mid, l, r) + self.queryrange(arr, 2*idx + 2, mid + 1, end, l, r )
-
         
 
     def query(self, left: int, right: int, value: int) -> int:

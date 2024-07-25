@@ -2,7 +2,6 @@ class Solution:
     def minimumCost(self, m: int, n: int, horizontalCut: List[int], verticalCut: List[int]) -> int:
         cuts = [(cost, 'H') for cost in horizontalCut] + [(cost, 'V') for cost in verticalCut]
         cuts.sort(reverse = True)
-        # print(cuts)
 
         hcuts, vcuts = 1, 1
         total_cost = 0
@@ -17,8 +16,6 @@ class Solution:
 
         return total_cost
 
-        
-        # return 5
 
 
 

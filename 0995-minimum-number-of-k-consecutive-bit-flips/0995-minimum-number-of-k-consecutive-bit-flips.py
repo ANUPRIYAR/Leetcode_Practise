@@ -10,7 +10,7 @@ class Solution:
 
 
             if (nums[i] + cur_window_flips) & 1 == 0:  
-                if i + k > n:
+                if i + k > len(nums):
                     return -1
 
                 cur_window_flips += 1

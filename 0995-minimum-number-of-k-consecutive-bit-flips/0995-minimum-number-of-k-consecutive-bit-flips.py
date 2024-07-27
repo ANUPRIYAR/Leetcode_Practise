@@ -5,13 +5,12 @@ class Solution:
         n = len(nums)
 
         for i in range(n):
-            #check if cur index is Out of Bounds for k size window
+            # check if cur index is Out of Bounds for k size window
             if i - k >= 0 and nums[i -k] == 2:
                 cur_window_flips -= 1    # then we reduce the effect of atleast 1 window which started at i-k index
 
 
-            
-            if (nums[i] + cur_window_flips)% 2 == 0:  
+            if (nums[i] + cur_window_flips) & 1 == 0:  
                 if i + k > n:
                     return -1
 

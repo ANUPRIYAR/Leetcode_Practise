@@ -1,16 +1,14 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         hashmap = dict()
-        left, right   = 0, 0 
+        left, right= 0, 0 
         maxlen = 0
 
         while right < len(s):
-            # print(f"right :{right} ")
             char = s[right]
             
             if char in hashmap and (left <= hashmap.get(char, -1) <= right):
                 left = hashmap[char] + 1
-                # right = left 
 
             hashmap[char] = right
             length = right - left + 1

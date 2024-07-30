@@ -4,23 +4,21 @@ class Solution:
 
 
     def find_count(self, nums, k):
-        start, end = 0, 0
-        hashmap = {"odd" : 0}
-        count = 0
-        n = len(nums)
+        start, end, n = 0, 0, len(nums)
+        odds, count = 0, 0
+
         if k < 0:
             return 0
 
         while end < n :
             num = nums[end]
             if num & 1 != 0:
-                hashmap["odd"] += 1
+                odds += 1
             
-            while hashmap["odd"] > k:
+            while odds > k:
                 start_num = nums[start]
                 if start_num & 1 != 0:
-                    hashmap['odd'] -= 1
-
+                    odds -= 1
                 start += 1
 
             count += (end - start + 1)

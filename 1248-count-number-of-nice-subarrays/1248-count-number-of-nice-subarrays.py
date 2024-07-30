@@ -11,14 +11,14 @@ class Solution:
             return 0
 
         while end < n :
-            num = nums[end]
-            if num & 1 != 0:
-                odds += 1
+            odds += nums[end] & 1
+            # if num & 1 != 0:
+            #     odds += 1
             
             while odds > k:
                 start_num = nums[start]
-                if start_num & 1 != 0:
-                    odds -= 1
+                # if start_num & 1 != 0:
+                odds -= start_num & 1
                 start += 1
 
             count += (end - start + 1)

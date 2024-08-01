@@ -23,14 +23,6 @@ class Solution:
 
         return [i for i in range(r+1) if prime[i] == 1]
 
-        # prime_numbers = []
-        # for i in range(int(sqrt(l), int(sqrt(r) + 1)):
-        #     if prime[i] == 1:
-        #         prime_numbers.append(i)
-
-
-        # return prime 
-
 
        
 

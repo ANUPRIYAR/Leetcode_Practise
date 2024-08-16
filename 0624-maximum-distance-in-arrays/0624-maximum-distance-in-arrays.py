@@ -3,7 +3,7 @@ class Solution:
         arrays.sort()
         print(arrays)
         smallest1, smallest2 = math.inf, math.inf
-        largest1, largest2 = 0, 0
+        largest1, largest2 = -math.inf , -math.inf
 
         small_index1 = large_index1 = large_index2 =small_index2 = math.inf
 

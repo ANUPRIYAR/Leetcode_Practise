@@ -5,14 +5,14 @@ class Solution:
         g.sort()
         n = len(g)
         len_s = len(s)
-        count = 0
+        # count = 0
         while g_idx < n and s_idx < len_s:
             if g[g_idx] <= s[s_idx]:
-                count += 1
+                # count += 1
                 g_idx += 1
             s_idx += 1
 
-        return count
+        return g_idx
             
 
 

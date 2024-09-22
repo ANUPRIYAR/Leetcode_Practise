@@ -12,7 +12,8 @@ class Solution:
             if hashmap[key] <= k:
                 k -= hashmap[key]
                 n -= 1
+            if k == 0:
+                break
         return n
             
-
 

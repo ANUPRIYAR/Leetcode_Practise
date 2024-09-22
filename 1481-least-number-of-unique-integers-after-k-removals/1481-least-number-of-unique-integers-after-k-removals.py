@@ -14,12 +14,5 @@ class Solution:
                 n -= 1
         return n
             
-            # hashmap[key] -= 1
-            # if hashmap[key] == 0:
-            #     del hashmap[key]
-            # if remove == k:
-            #     return 
-
-            
 
 

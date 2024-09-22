@@ -1,19 +1,24 @@
 class Solution:
     def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
-        hashmap = dict()
-
+        n = len(arr)
+        elemfreq = dict()
         for num in arr:
-            hashmap[num] = hashmap.get(num, 0) + 1
+            elemfreq[num] = elemfreq.get(num, 0) + 1
 
-        hashmap = dict(sorted(hashmap.items(), key = lambda x:x [1]))
+        freqcount = [0]* (n + 1)
+        for key, value in elemfreq.items():
+            freqcount[value] += 1
 
-        n = len(hashmap)
-        for key in hashmap:
-            if hashmap[key] <= k:
-                k -= hashmap[key]
-                n -= 1
-            if k == 0:
-                break
-        return n
-            
+        # print(freqcount)
 
+        uniqueelems = len(elemfreq)
+
+        for i in range(1, n + 1):
+            elementsToRemove = min(k//i, freqcount[i])
+            k -= i * elementsToRemove
+            uniqueelems -= elementsToRemove
+            if k < i:
+                return uniqueelems
+
+        return 0
+        

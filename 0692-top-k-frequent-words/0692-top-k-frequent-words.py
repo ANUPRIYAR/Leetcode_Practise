@@ -1,13 +1,24 @@
+from collections import Counter
+
 class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
-        freq_map = dict()
+        count = Counter(words)
+        bucket = [[] for i in range(len(words))]
 
-        for word in words:
-            freq_map[word] = freq_map.get(word, 0) + 1
+        for char, freq in count.items():
+            bucket[freq].append(char)
+            
+        for i in range(len(bucket)):
+            bucket[i].sort()
 
-        freq_map = dict(sorted(freq_map.items(), key = lambda x : (-x[1],x[0]) ))
+        res = []
+        # Iterate from reverse to get most frequent bucket first
+        for i in range(len(bucket)-1, 0, -1):
+            for num in bucket[i]:
+                res.append(num)
+                if len(res) == k:
+                    return res
 
-        keys = list(freq_map.keys())
 
-        return keys[:k]
-        
+
+    

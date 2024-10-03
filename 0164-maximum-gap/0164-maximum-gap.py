@@ -1,3 +1,6 @@
+
+import heapq
+
 class Solution:
     def maximumGap(self, nums: List[int]) -> int:
         self.radix_sort(nums)
@@ -5,12 +8,13 @@ class Solution:
         if len(nums) < 2:
             return 0
 
+        maxheap = []
         for i in range(len(nums) - 1):
             diff = nums[i + 1] - nums[i]
-            if diff > max_gap:
-                max_gap = diff
+            heapq.heappush(maxheap, - diff)
 
-        return max_gap
+
+        return -heapq.heappop(maxheap)
 
 
     def radix_sort(self, nums):

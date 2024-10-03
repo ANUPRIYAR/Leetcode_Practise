@@ -18,7 +18,3 @@ class Solution:
                 max_diff = max(max_diff, (minheap[0] - num1))
 
         return max_diff
-
-
-
-        

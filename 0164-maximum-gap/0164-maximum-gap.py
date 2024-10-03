@@ -7,8 +7,10 @@ class Solution:
             return 0
 
         minheap = []
-        for num in nums:
-            heapq.heappush(minheap, num)
+        minheap = nums
+        heapq.heapify(minheap)
+        # for num in nums:
+        #     heapq.heappush(minheap, num)
 
         max_diff = float(-inf)
         while minheap:

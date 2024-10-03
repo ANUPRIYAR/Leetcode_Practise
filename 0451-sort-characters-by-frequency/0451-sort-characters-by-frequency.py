@@ -1,19 +1,20 @@
 from collections import Counter
-
+import heapq
+from heapq import heappush , heappop 
 class Solution:
     def frequencySort(self, s: str) -> str:
         count = Counter(s)
-        buckets = [[] for i in range(len(s) + 1)]
-
+        maxheap = []
         for char, freq in count.items():
-            buckets[freq].append(char)
+            heappush(maxheap, (-freq, char))
 
         result = ''
-        for i in range(len(buckets)-1, 0, -1):
-            for char in buckets[i]:
-                result += char * i
-        
+        while maxheap:
+            freq, char = heappop(maxheap)
+            result += char * (-freq)
         return result
+
+
         
 
 

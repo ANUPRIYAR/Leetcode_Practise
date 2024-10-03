@@ -6,8 +6,9 @@ class Solution:
             return 0
 
         for i in range(len(nums) - 1):
-            if nums[i +1] - nums[i] > max_gap:
-                max_gap = nums[i +1] - nums[i]
+            diff = nums[i +1] - nums[i]
+            if diff > max_gap:
+                max_gap = diff
 
         return max_gap
 
@@ -22,7 +23,7 @@ class Solution:
         
 
     def counting_sort(self, nums, exp):
-        count = [0]* 10
+        count = [0] * 10
         output = [0] * len(nums)
 
         for num in nums:

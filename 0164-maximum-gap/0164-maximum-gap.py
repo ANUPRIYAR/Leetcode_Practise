@@ -6,7 +6,7 @@ class Solution:
             return 0
 
         for i in range(len(nums) - 1):
-            diff = nums[i +1] - nums[i]
+            diff = nums[i + 1] - nums[i]
             if diff > max_gap:
                 max_gap = diff
 
@@ -26,18 +26,23 @@ class Solution:
         count = [0] * 10
         output = [0] * len(nums)
 
+        # count freqeuncy
         for num in nums:
             digit = (num//exp)% 10
             count[digit] += 1
 
+
+        #  cumulative freqeuncy
         for i in range(1, len(count)):
             count[i] += count[i-1]
 
+        # Update output
         for i in range(len(nums) - 1, -1, -1):
             digit = (nums[i]//exp)% 10
             output[count[digit] - 1] = nums[i]
             count[digit] -= 1
 
+        # reset nums
         for i in range(len(nums)):
             nums[i] = output[i]
 

@@ -10,41 +10,12 @@ class Solution:
         n = len(arr)
         q = len(queries)
 
-        blocksize = math.ceil(math.sqrt(n))
-        answer = [0]*q
+        prefix_xor = [0]* (n + 1)
+        for i in range(1, n + 1):
+            prefix_xor[i] = prefix_xor[i-1] ^ arr[i-1]
 
-        queries = [Query(query[0],query[1], i)  for i, query in enumerate(queries)]
-        queries.sort(key = lambda q:(q.left//blocksize, q.right))
+        result = []
+        for left, right in queries:
+            result.append(prefix_xor[right + 1] ^ prefix_xor[left])
 
-        currentleft, currentright = 0, -1
-        currentxor = 0 
-
-        for  query in queries:
-            left = query.left
-            right = query.right
-
-
-            while currentright < right:
-                currentright += 1
-                currentxor ^= arr[currentright]
-
-            while currentright > right:
-                currentxor ^= arr[currentright]
-                currentright -= 1
-
-            while currentleft > left:
-                currentleft -= 1
-                currentxor ^= arr[currentleft]
-                
-
-            while currentleft < left:
-                currentxor ^= arr[currentleft]
-                currentleft += 1
-                
-            answer[query.index] = currentxor
-
-        return answer
-            
-
-
-        
+        return result

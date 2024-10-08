@@ -1,9 +1,4 @@
 import math
-class Query:
-    def __init__(self, left, right, index):
-        self.left = left
-        self.right = right
-        self.index = index
 
 class Solution:
     def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:

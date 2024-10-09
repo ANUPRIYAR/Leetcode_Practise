@@ -44,7 +44,6 @@ class Solution:
             currentdiff =  self.find_min_difference(count)
             ans[query.index] = currentdiff if currentdiff != math.inf else -1
 
-
         return ans
 
     def find_min_difference(self, count):

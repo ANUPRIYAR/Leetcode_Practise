@@ -17,9 +17,9 @@ class Solution:
             if not root.left and not root.right: # to confirm is its a leaf node
                 if currsum == targetSum:
                     return True
-                else:
-                    # currsum -= root.val
-                    return False
+                # else:
+                #     # currsum -= root.val
+                #     return False
             return dfs(root.left, currsum) or dfs(root.right, currsum)
 
         return dfs(root, 0)

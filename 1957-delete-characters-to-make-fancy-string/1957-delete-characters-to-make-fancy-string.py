@@ -19,7 +19,7 @@ class Solution:
             start = end
             end += 1
 
-        if len(s)> 2 and s[-1] != s[-2]:
+        if s[-1] != s[-2]:
             fancy_string += s[-1]
         
         return fancy_string

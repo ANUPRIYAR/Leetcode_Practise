@@ -9,14 +9,11 @@ class Solution:
         if not root:
             return 0
 
-        def finddepth(node):
-            if not node.left and not node.right:
-                return  1        
+        if not root.left and not root.right:
+            return  1        
 
-            left = finddepth(node.left) if node.left else float('inf')
-            right = finddepth(node.right) if node.right else float('inf')
+        left = self.minDepth(root.left) if root.left else float('inf')
+        right = self.minDepth(root.right) if root.right else float('inf')
 
-            return 1 + min(left, right)
+        return 1 + min(left, right)
 
-        return finddepth(root)
-            

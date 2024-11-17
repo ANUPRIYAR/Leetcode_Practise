@@ -1,14 +1,7 @@
 from heapq import heappop as hpop , heappush as hpush
 class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
-        left  = 0
-        windowsum  = 0
         minlength = float('inf')
-
-        if len(nums)== 1:
-            if nums[0] >= k:
-                return 1
-
         minheap = []
         cum_sum = 0
 

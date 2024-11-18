@@ -1,12 +1,12 @@
 class Solution:
     def __init__(self):
         self.directions = [(-1, 1), (0, 1), (1, 1)]
+        
     def maxMoves(self, grid: List[List[int]]) -> int:
         rows = len(grid)
         max_moves = 0
         for row in range(rows):
             max_moves = max(max_moves, self.dfs(row, 0 ,grid,  0, set()))
-
         return max_moves
 
 
@@ -19,19 +19,6 @@ class Solution:
 
 
         return moves 
-                
-
-         
-
-
-
-
-
-        
-
-
-
-
 
 
 

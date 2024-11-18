@@ -15,7 +15,6 @@ class Solution:
                 elif k == 0:
                     new_code[i] = 0
                 else:
-                    # print(i - j%n)
                     new_code[i] += code[(i - j)%n] 
 
             if i == len(code) - 1:

@@ -1,52 +1,40 @@
 class Solution:
     def takeCharacters(self, s: str, k: int) -> int:
-        # freq = dict()
-        freq = {"a" : 0 , "b" : 0, "c":0}
         if k == 0:
             return 0
-        left, right  = 0, len(s)- 1
-        minutes = 0
-        flag = False
+
+        freq = {"a" : 0 , "b" : 0, "c":0}
+        n = len(s)
+        min_minutes = float('inf')
+
         
-        min_minutes = float("inf")
-        n= len(s)
-        limit = -1
-        while limit <= len(s)//2 + 1:
-            freq["a"],  freq["b"], freq["c"] = 0, 0, 0
-            left, right = 0, len(s) - 1
-            minutes = 0
+        count = [0]*3
+        for char in s:
+            count[ord(char) - ord("a")] += 1
 
-            while left <= limit and left < len(s):
-                freq[s[left]] += 1
-                minutes += 1
-                left += 1
-            left = left - 1
-            # print(f"left:{left}")
-            while right > left and (freq["a"] < k or freq["b"] < k or freq["c"] < k):
-                freq[s[right]] += 1
-                minutes += 1
-                right -= 1
-            right = right + 1
-
-            # print(f"right: {right}")
-            # print(f"freq:{freq}")
+        for c in count:
+            if c < k:
+                return - 1
             
-            # minutes = left + len(s) - right 
-            print(f"minutes:{minutes}")
-            if freq["a"] >= k and freq["b"] >= k and freq["c"] >= k:
-                min_minutes = min(min_minutes, minutes)
-        
-            limit += 1
-            
+        start = 0
+        for end in range(len(s)):
+            freq[s[end]] += 1
 
-        return min_minutes if min_minutes != float('inf') else -1
+            while count[0]- freq["a"] < k or count[1] - freq["b"] < k or count[2] - freq["c"] < k:
+                freq[s[start]] -= 1
+                start += 1
 
-            
+            if count[0]- freq["a"] >= k and count[1] - freq["b"] >= k and count[2] - freq["c"] >= k:
+                min_minutes = min(min_minutes, n - (end - start + 1))
 
 
+        return min_minutes
 
 
 
 
 
         
+
+        
+            

@@ -2,7 +2,7 @@ class Solution:
     def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:
         q = len(nums)
         query = [-1]* q
-        prefix_xor, index, max_bitlength = 0, 0, 0
+        prefix_xor, index = 0, 0
 
         # Calculating prefix_xor in advance
         prefix_xor = 0

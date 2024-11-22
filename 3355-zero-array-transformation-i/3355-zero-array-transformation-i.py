@@ -1,23 +1,20 @@
 class Solution:
     def isZeroArray(self, nums: List[int], queries: List[List[int]]) -> bool:
         n = len(nums)
-        count = [0 for _ in range(n+1)]
+        count = [0]* n 
 
-        sum_ = 0
-        k = 0
+        for query in queries:
+            count[query[0]] += 1
+            if query[1] + 1 < n:
+                count[query[1] + 1] -= 1 
 
+        
+        curfreq = 0
         for i in range(n):
-            while sum_ + count[i] < nums[i]:
-                k += 1
-                if k - 1>= len(queries):
-                    return False
+            # cumulative sum until i
+            curfreq += count[i]
+            if curfreq < nums[i]:
+                return False
 
-                left, right = queries[k - 1]
-                if right < i:
-                    continue
-
-                count[max(left, i)] += 1  # applying sweep line
-                count[right + 1] -= 1
-
-            sum_ += count[i]
-        return k <= len(queries)
+        return True 
+        

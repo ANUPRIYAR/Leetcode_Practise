@@ -17,17 +17,17 @@ class Solution:
                         ny += dy
 
 
-        print(grid)
+        # print(grid)
 
-        transposed = [list(row) for row in zip(*grid)]
-        rotated = [row[::-1] for row in transposed]
-        # matrix  = [[0]*rows for _ in range(cols)]
-        # for r in range(cols):
-        #     for c in range(rows):
-        #         matrix[c][cols-r-1] = grid[c][r]
+        # transposed = [list(row) for row in zip(*grid)]
+        # rotated = [row[::-1] for row in transposed]
+        matrix  = [[0]*rows for _ in range(cols)]
+        for r in range(rows):
+            for c in range(cols):
+                matrix[c][rows-r-1] = grid[r][c]
 
 
-        return rotated
+        return matrix
 
         
         

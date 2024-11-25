@@ -14,9 +14,8 @@ class Solution:
         while queue:
             node = queue.popleft()
 
-            for val in values:
-                min_diff = min(min_diff, abs(node.val - val))
-
+            # for val in values:
+            #     min_diff = min(min_diff, abs(node.val - val))
             values.append(node.val)
 
             if node.left:
@@ -24,6 +23,12 @@ class Solution:
             
             if node.right:
                 queue.append(node.right)
+
+        for i in range(len(values)):
+            for j in range( i+ 1, len(values)):
+                min_diff = min(min_diff, abs(values[i] - values[j]))
+
+
        
         return min_diff
 

@@ -8,18 +8,16 @@ class Solution:
     def __init__(self):
         self.maxdepth = 0
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        def dfs(node, depth):
+        def dfs(node):
             if not node:
                 return 0
 
+            left = dfs(node.left)
+            right = dfs(node.right)
+            self.maxdepth = max(self.maxdepth, max(left, right) + 1)
+            return max(left, right ) + 1
 
-            left = dfs(node.left, depth + 1)
-            right = dfs(node.right, depth +1 )
-
-            self.maxdepth = max(self.maxdepth, depth)
-
-        dfs(root, 1)
-
+        dfs(root)
         return self.maxdepth
 
-        
+          

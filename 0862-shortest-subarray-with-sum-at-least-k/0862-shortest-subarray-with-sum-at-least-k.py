@@ -1,39 +1,28 @@
 from heapq import heappop as hpop , heappush as hpush
 class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
+        left  = 0
+        windowsum  = 0
         minlength = float('inf')
-        stack = [(0, -1)]
-        cumsum = 0
 
-        for i in range(len(nums)):
-            cumsum += nums[i]
+        if len(nums)== 1:
+            if nums[0] >= k:
+                return 1
 
-            while stack and cumsum <= stack[-1][0]:
-                stack.pop()
+        minheap = []
+        cum_sum = 0
 
-            stack.append((cumsum, i))
+        for i, num in enumerate(nums):
+            cum_sum += num
 
-            index = self.binary_search(stack, cumsum - k)
+            if cum_sum >= k:
+                minlength = min(minlength, i + 1)
 
-            if index != -1:
-                minlength = min(minlength, i - stack[index][1])
+            while minheap and cum_sum - minheap[0][0] >= k:
+                minlength = min(minlength, i - hpop(minheap)[1])
 
+            hpush(minheap, (cum_sum, i))
 
         return minlength if minlength != float('inf') else -1 
-
-    def binary_search(self, stack, target):
-        left = 0
-        right = len(stack)-1
-
-        while left <= right:
-            mid = (left + right)//2
-
-            if stack[mid][0]  <= target:
-                left = mid + 1
-            else:
-                right = mid - 1
-
-
-        return right 
 
 

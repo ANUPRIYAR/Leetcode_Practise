@@ -1,18 +1,17 @@
 class Solution:
     def slidingPuzzle(self, grid: List[List[int]]) -> int:
         target = "123450"
-
-        start = ''.join(str(num) for row in grid for num in row)
-
+        # Graph
         neighbours = {
             0:[1,3], 1:[0, 2, 4], 2:[1,5],
             3:[0, 4], 4:[1,3,5], 5:[2,4]
         }
 
-        # BFS Setup
-        queue = deque([(start, 0)])
+        start = ''.join([str(num) for row in grid for num in row])
         visited = set()
         visited.add(start)
+
+        queue = deque([(start, 0)])
 
         while queue:
             state, moves = queue.popleft()
@@ -22,15 +21,18 @@ class Solution:
 
             zero_index = state.index('0')
 
-            for neighbor in neighbours[zero_index]:
+            for neigh in neighbours[zero_index]:
                 new_state = list(state)
-                new_state[zero_index], new_state[neighbor] = new_state[neighbor], new_state[zero_index]
+                new_state[zero_index], new_state[neigh] = new_state[neigh], new_state[zero_index]
 
                 new_state_str = ''.join(new_state)
-
+                
                 if new_state_str not in visited:
                     visited.add(new_state_str)
                     queue.append((new_state_str, moves + 1))
 
         return -1 
+
+
+
         

@@ -1,28 +1,40 @@
-from heapq import heappop as hpop , heappush as hpush
+from heapq import heappush as hpush , heappop as hpop
 class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
-        left  = 0
-        windowsum  = 0
+        n = len(nums)
+        prefix_sum = [0] * n
+        prefix_sum
         minlength = float('inf')
-
-        if len(nums)== 1:
-            if nums[0] >= k:
-                return 1
-
         minheap = []
-        cum_sum = 0
+        for i in range(len(nums)):
+            if i != 0:
+                prefix_sum[i] += prefix_sum[i-1] + nums[i]
+            else:
+                prefix_sum[i] = nums[i]
 
-        for i, num in enumerate(nums):
-            cum_sum += num
-
-            if cum_sum >= k:
+            if prefix_sum[i] >= k:
                 minlength = min(minlength, i + 1)
 
-            while minheap and cum_sum - minheap[0][0] >= k:
-                minlength = min(minlength, i - hpop(minheap)[1])
+           
+            while minheap and prefix_sum[i] - minheap[0][0] >= k:
+                print(f"smallest :{minheap[0][0] }")
+                cumsum, j = hpop(minheap)
+                minlength = min(minlength, i - j )
 
-            hpush(minheap, (cum_sum, i))
+            hpush(minheap, (prefix_sum[i], i))
+            # print(minheap)
 
-        return minlength if minlength != float('inf') else -1 
+
+        return minlength if minlength != float('inf') else - 1
+                
+
+            
 
 
+
+        
+
+
+        
+
+        

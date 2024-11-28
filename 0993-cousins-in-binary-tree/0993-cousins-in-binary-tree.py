@@ -7,18 +7,17 @@
 class Solution:
     def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
         queue = deque()
-        queue.append((root, 0))
-        x_d = -1
-        y_d = -1
-        parent = defaultdict(int)
-        parent[root.val] = -1
+        queue.append(root)
+        # x_d = -1
+        # y_d = -1
+        # parent = defaultdict(int)
+        # parent[root.val] = -1
 
         while queue:
             found_x = False
             found_y = False
             for _ in range(len(queue)):
-                node, depth = queue.popleft()
-                print(depth)
+                node = queue.popleft()
 
                 if node.val == x:
                     found_x = True
@@ -27,33 +26,15 @@ class Solution:
                     found_y = True
                 
 
-                # if node.val == x :
-                #     x_d = depth
-                #     parent_x = parent[node.val]
-                #     if y_flag and depth == y_d and parent_y != parent_x:
-                #         x_flag = True
-                #     elif not y_flag:
-                #          x_flag = True
-                    
-
-                # if node.val == y :
-                #     y_d = depth
-                #     parent_y = parent[node.val]
-                #     if x_flag and depth == x_d and parent_y != parent_x:
-                #         y_flag = True
-                #     elif not x_flag:
-                #         y_flag = True
                 if node.left and node.right:
-                    if node.left.val == x and node.right.val == y or (node.left.val ==y and node.right.val == x):
+                    if (node.left.val == x and node.right.val == y) or (node.left.val ==y and node.right.val == x):
                         return False
 
                 if node.left:
-                    parent[node.left.val] = node.val
-                    queue.append((node.left, depth + 1))
+                    queue.append(node.left)
 
                 if node.right:
-                    parent[node.right.val] = node.val
-                    queue.append((node.right, depth + 1))
+                    queue.append(node.right)
 
             if found_x and found_y:
                 return True 

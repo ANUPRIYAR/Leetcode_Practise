@@ -8,10 +8,8 @@ class Solution:
             if not (x & 1<<i):
                 shifts.append(i)
 
-
         for i in range(32, 64):
             shifts.append(i)
-
 
         i = 0
         while calc > 0:

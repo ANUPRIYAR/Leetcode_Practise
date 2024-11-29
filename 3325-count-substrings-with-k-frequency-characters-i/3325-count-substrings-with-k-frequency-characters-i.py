@@ -1,24 +1,21 @@
 class Solution:
     def numberOfSubstrings(self, s: str, k: int) -> int:
-        count = 0
         start = 0
+        count = 0
+        freq = dict()
         length = len(s)
-        freq_map = dict()
 
         for end in range(length):
-            freq_map[s[end]] = freq_map.get(s[end], 0) + 1
+            char = s[end]
+            freq[char] = freq.get(char, 0) + 1
 
-            while freq_map[s[end]] >= k:
+            while freq[char] >= k:
                 count += length - end
-                freq_map[s[start]] -= 1
-                start += 1
+                freq[s[start]] -= 1
+                start  += 1
+
 
         return count
 
-
-        
-
-    
-    
-            
+                
         

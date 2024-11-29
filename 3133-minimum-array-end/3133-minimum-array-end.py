@@ -1,14 +1,27 @@
 class Solution:
     def minEnd(self, n: int, x: int) -> int:
-        # start with x, coz thats the smallest num with alll bits same as x
-        answer = x
+        shifts = []
+        cur = x
+        calc = n -1
 
-        # to find nth output, we can iterate n times
-        while n > 1:
-            # taking next greater number and oring it with x , to set all bits as x
-            answer = (answer + 1) | x
-            n -= 1
+        for i in range(32):
+            if not (x & 1<<i):
+                shifts.append(i)
 
-        return answer
+
+        for i in range(32, 64):
+            shifts.append(i)
+
+
+        i = 0
+        while calc > 0:
+            cur += (calc & 1) << shifts[i]
+            calc >>= 1
+            i += 1
+
+        return cur
+
+
+
+
         
-    

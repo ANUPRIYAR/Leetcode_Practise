@@ -1,21 +1,25 @@
 class Solution:
     def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:
-        q = len(nums)
-        query = [-1]* q
-        prefix_xor, index = 0, 0
+        prefix_xor = [0] * len(nums)
+        prefix_xor[0] = nums[0]
+        for i in range(1, len(nums)):
+            prefix_xor[i] ^= prefix_xor[i-1] ^ nums[i]
 
-        # Calculating prefix_xor in advance
-        prefix_xor = 0
-        for num in nums:
-            prefix_xor ^= num
+        print(prefix_xor)
+        curxor = 0
+        k = len(nums)
+        answer = []
+        while k > 0:
+            curxor = prefix_xor[k-1]
 
-        while q > 0:
-            all_ones = (1 << maximumBit) - 1  #allones of given bitlength will be max number
-            query[index] = prefix_xor ^ all_ones  # xoring allones with current xor will give k
-            num = nums.pop()  # popping last element
-            prefix_xor ^= num     # and removing the contribution of popped element
+            allsetbits = (1<< maximumBit) - 1
+            answer.append(curxor ^ allsetbits)
+            k -= 1
+
+
+        return answer
             
-            q-= 1
-            index += 1
-            
-        return query 
+
+        
+
+        

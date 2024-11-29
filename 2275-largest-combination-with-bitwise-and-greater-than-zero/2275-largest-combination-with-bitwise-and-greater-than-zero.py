@@ -1,18 +1,11 @@
 class Solution:
-    def largestCombination(self, candidates: List[int]) -> int:
-        bit_count = [0] * 32
+    def largestCombination(self, nums: List[int]) -> int:
+        bit_counts = [0]*32
 
-        max_freq = 0
-        for num in candidates:
-            for i in range(32):
-                x = 1 << i
-                if num &  x != 0:
-                    bit_count[i] += 1
-                    if bit_count[i] > max_freq:
-                        max_freq = bit_count[i]
+        for i in range(len(nums)):
+            for j in range(32):
+                if nums[i] & 1<<j != 0:
+                    bit_counts[j] += 1
 
-        return max_freq
-        
-    
 
-        
+        return max(bit_counts)

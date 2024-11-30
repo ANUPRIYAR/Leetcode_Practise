@@ -6,17 +6,21 @@
 #         self.right = right
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-
         def ismirror(node1, node2):
-            if node1 is None and node2 is None:
+            if not node1 and not node2:
                 return True
-            
-            if node1 is None or node2 is None:
+
+            if not node1 or not node2:
                 return False
+
 
             if node1.val == node2.val:
                 return ismirror(node1.left, node2.right) and ismirror(node1.right, node2.left)
             return False
-
         return ismirror(root.left, root.right)
+
             
+
+
+
+        

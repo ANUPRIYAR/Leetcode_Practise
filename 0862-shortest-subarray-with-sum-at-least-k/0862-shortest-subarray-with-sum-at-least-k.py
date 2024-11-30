@@ -17,7 +17,7 @@ class Solution:
 
            
             while minheap and prefix_sum[i] - minheap[0][0] >= k:
-                print(f"smallest :{minheap[0][0] }")
+                # print(f"smallest :{minheap[0][0] }")
                 cumsum, j = hpop(minheap)
                 minlength = min(minlength, i - j )
 

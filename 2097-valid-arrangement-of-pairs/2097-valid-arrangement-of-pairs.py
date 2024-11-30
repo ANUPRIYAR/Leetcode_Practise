@@ -25,7 +25,6 @@ class Solution:
                 path.append((curr, next_node))
 
         dfs(root)
-        print(path)
         return path[::-1]
 
 

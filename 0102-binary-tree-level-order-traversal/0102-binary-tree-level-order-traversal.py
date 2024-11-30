@@ -9,35 +9,26 @@ class Solution:
         if not root:
             return []
 
-        nodes_by_level = []
+        queue = deque()
+        queue.append(root)
+        answer = []
 
-        def bfs(node):
-            queue = deque()
-            visited = set()
+        while queue:
+            level = []
+            for _ in range(len(queue)):
+                node = queue.popleft()
 
-            queue.append(node)
-            visited.add(node)
+                if node:
+                    level.append(node.val)
+                    queue.append(node.left)
+                    queue.append(node.right)
 
-            while queue:
-                cur_level = []
+            if level:
+                answer.append(level)
 
-                for i in range(len(queue)):
-                    node = queue.popleft()
+        return answer
 
-                    cur_level.append(node.val)
-
-                    if node.left:
-                        queue.append(node.left)
-                   
-                    if node.right:
-                         queue.append(node.right)
-
-                nodes_by_level.append(cur_level)
-
-        bfs(root)
-        return nodes_by_level
-
-
+                
 
 
         

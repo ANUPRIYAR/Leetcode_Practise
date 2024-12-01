@@ -18,7 +18,7 @@ class Solution:
         for end in range(len(s)):
             count[ord(s[end]) - offset] -= 1
 
-            while min(count) < k:
+            while count[ord(s[end]) - offset] < k:
                 count[ord(s[start]) - offset] += 1
                 start += 1
 

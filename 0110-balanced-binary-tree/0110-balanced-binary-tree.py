@@ -7,19 +7,18 @@
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
 
-        def find_balanced_height(node):
+        def check_balance(node):
             if not node:
                 return True, 0
 
-            left_balanced, leftheight = find_balanced_height(node.left)
-            right_balanced, rightheight = find_balanced_height(node.right)
+            left_balanced, leftheight = check_balance(node.left)
+            right_balanced, rightheight = check_balance(node.right)
 
-            current_balanced = left_balanced and right_balanced and abs(leftheight - rightheight) <= 1
-            currentheight = max(leftheight, rightheight) + 1
-            return current_balanced, currentheight
+            cur_balanced = (left_balanced and right_balanced) and abs(leftheight- rightheight) <= 1
 
-        balanced, _ = find_balanced_height(root)
+            return cur_balanced, max(leftheight, rightheight) + 1
+
+
+        balanced, _ = check_balance(root)
         return balanced
-
-
         

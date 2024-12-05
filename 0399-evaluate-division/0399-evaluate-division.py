@@ -1,52 +1,49 @@
-from collections import defaultdict
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
         adj = defaultdict(list)
 
-        for (u, v), value in zip(equations, values):
-            adj[u].append([value, v])
-            adj[v].append([1/value, u])
-
-        
-        def dfs(node, destination, visit):
-            
-            if node == destination:
-                return 1.0
-            visit.add(node)
-
-            for value, child in adj[node]:
-                if child not in visit:
-                    product = dfs(child, destination, visit,)
-                    if product != -1:
-                        return product * value
+        for i,( u, v) in enumerate(equations) :
+            adj[u].append((v, values[i]))
+            adj[v].append((u, 1/values[i]))
 
 
-            visit.remove(node)
-            return -1.0
+        def compute_graph(a, b):
+            visited = set()
 
-        
-        result = []
-        for source, destination in queries:
-            if source not in adj or destination not in adj:
-                result.append(float(-1))
-            elif source == destination:
-                result.append(float(1))
+            queue = deque()
+            queue.append((a, 1))
+
+            while queue:
+                node, cur_val = queue.popleft()
+
+                if node in visited:
+                    continue
+
+                visited.add(node)
+
+                for nei, val in adj[node]:
+                    if nei == b:
+                        return cur_val * val
+                    else:
+                        queue.append((nei, cur_val*val))
+
+            return -1 
+
+        answers = []
+        for u, v in queries:
+            if u not in adj or v not in adj:
+                answers.append(-1) 
+            elif u == v:
+                answers.append(1)
             else:
-                result.append(dfs(source, destination, set()))
+                answers.append(compute_graph(u, v))
 
-        return result
-
-
-                
-
-
+        return answers
+                    
+                    
 
 
         
 
 
-
-
-
-        
         

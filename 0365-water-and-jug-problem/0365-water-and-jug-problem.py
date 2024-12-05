@@ -8,38 +8,31 @@ class Solution:
             
             visited.add((a,b))
             
-            # Check if we've reached our target volume
             if a + b == target:
                 return True
-            
-            # Explore all possible operations
-            
-            # Fill jug x completely
-            if dfs(x, b): 
-                return True
-            
-            # Fill jug y completely
-            if dfs(a, y): 
-                return True
-            
-            # Empty jug x completely
-            if dfs(0, b): 
-                return True
-            
-            # Empty jug y completely
-            if dfs(a ,0): 
-                return True
-            
-            # Pour water from jug x to jug y until one is full or one is empty.
-            transfer_to_y = min(a ,y - b)
-            if dfs(a - transfer_to_y ,b + transfer_to_y):
-                return True
-            
-             # Pour water from jug y to jug x until one is full or one is empty.
-            transfer_to_x = min(b ,x - a)
-            if dfs(a + transfer_to_x ,b - transfer_to_x):
+
+            if dfs(x,b):
                 return True
 
+            if dfs(a, y):
+                return True
+
+            if dfs(0, b):
+                return True
+
+            if dfs(a, 0):
+                return True
+
+            transfer_x_to_y = min(a, y-b)
+            if dfs(a - transfer_x_to_y, b + transfer_x_to_y):
+                return True
+
+            transfer_y_to_x = min(b, x - a)
+            if dfs(a + transfer_y_to_x, b - transfer_y_to_x  ):
+                return True
             return False
-        
-        return dfs(0 ,0)
+
+        return dfs(0, 0)
+ 
+
+            

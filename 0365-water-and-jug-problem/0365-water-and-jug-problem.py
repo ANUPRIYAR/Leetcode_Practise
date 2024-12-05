@@ -1,38 +1,51 @@
+from math import gcd
 class Solution:
     def canMeasureWater(self, x: int, y: int, target: int) -> bool:
-        visited = set()   # To keep track of visited states
+        # Check if target is greater than the total capacity
+        if target > x + y:
+            return False
         
-        def dfs(a: int, b: int):
-            if (a,b) in visited or a > x or b > y or a < 0 or b < 0:
-                return False
+        # Check if target is achievable with gcd condition
+        if target % gcd(x, y) != 0:
+            return False
+        
+        # BFS initialization
+        visited = set()
+        queue = deque([(0, 0)])  # Start with both jugs empty
+        
+        while queue:
+            a, b = queue.popleft()
             
-            visited.add((a,b))
-            
+            # Check if we've reached our target volume
             if a + b == target:
                 return True
-
-            if dfs(x,b):
-                return True
-
-            if dfs(a, y):
-                return True
-
-            if dfs(0, b):
-                return True
-
-            if dfs(a, 0):
-                return True
-
-            transfer_x_to_y = min(a, y-b)
-            if dfs(a - transfer_x_to_y, b + transfer_x_to_y):
-                return True
-
-            transfer_y_to_x = min(b, x - a)
-            if dfs(a + transfer_y_to_x, b - transfer_y_to_x  ):
-                return True
-            return False
-
-        return dfs(0, 0)
- 
-
             
+            # If already visited this state, skip it
+            if (a, b) in visited:
+                continue
+            
+            visited.add((a, b))
+            
+            # Possible operations
+            
+            # Fill jug x completely
+            queue.append((x, b))
+            
+            # Fill jug y completely
+            queue.append((a, y))
+            
+            # Empty jug x completely
+            queue.append((0, b))
+            
+            # Empty jug y completely
+            queue.append((a ,0))
+            
+            # Pour water from jug x to jug y until one is full or one is empty.
+            transfer_to_y = min(a ,y - b)
+            queue.append((a - transfer_to_y ,b + transfer_to_y))
+            
+             # Pour water from jug y to jug x until one is full or one is empty.
+            transfer_to_x = min(b ,x - a)
+            queue.append((a + transfer_to_x ,b - transfer_to_x))
+
+        return False

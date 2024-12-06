@@ -8,9 +8,6 @@ class Solution:
             if i not in banned and i <= maxSum:
                 array.append(i)
                 cumsum += array[j]
-                # print(j)
-                # print(f"array : {array}")
-                print(f"cumsum: {cumsum}")
                 if cumsum > maxSum:
                     return j 
                 elif cumsum == maxSum:

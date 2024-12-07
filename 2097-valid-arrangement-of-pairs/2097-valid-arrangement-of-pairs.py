@@ -1,30 +1,25 @@
 class Solution:
     def validArrangement(self, pairs: List[List[int]]) -> List[List[int]]:
-        graph = defaultdict(list)
-        inOutDeg = defaultdict(int)
-
+        adj = defaultdict(list)
+        inoutdegree = defaultdict(int)
         for start, end in pairs:
-            graph[start].append(end)
-            inOutDeg[start] += 1
-            inOutDeg[end] -= 1
+            adj[start].append(end)
+            inoutdegree[start] += 1
+            inoutdegree[end] -= 1
 
-
-        # finding the start node
+        queue = deque()
         root = pairs[0][0]
-        for node in inOutDeg:
-            if inOutDeg[node] == 1:
-                root = node
+        for key in inoutdegree.keys():
+            if inoutdegree[key] == 1:
+                root = key
                 break
 
-
         path = []
-        def dfs(curr):
-            while graph[curr]:
-                next_node = graph[curr].pop()
+        def dfs(curnode):
+            while adj[curnode]:
+                next_node = adj[curnode].pop()
                 dfs(next_node)
-                path.append((curr, next_node))
+                path.append((curnode, next_node))
 
         dfs(root)
         return path[::-1]
-
-

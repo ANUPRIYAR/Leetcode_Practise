@@ -4,7 +4,7 @@ class Solution:
             operations = 0
             for balls in nums:
                 if balls > maxBalls:
-                    operations += (balls - 1)//maxBalls
+                    operations += math.floor((balls - 1)/maxBalls)
                     if operations > maxOperations:
                         return False
             return True

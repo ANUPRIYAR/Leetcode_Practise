@@ -9,39 +9,22 @@ class Solution:
         if not root:
             return None
 
-        if not root.left and not root.right:
-            return root.val
-
         queue = deque()
         queue.append(root)
 
         while queue:
-            for i in range(len(queue)):
+            levelsize = len(queue)
+            for i in range(levelsize):
                 node = queue.popleft()
-
                 if i == 0:
                     leftmostnode = node.val
-                    
 
                 if node.left:
                     queue.append(node.left)
-                    
-                    # prev_node = node
                 
                 if node.right:
                     queue.append(node.right)
-                    # if not node.left:
-                        # prev_node = node
-
-
-        # if prev_node.left:
-        #     return prev_node.left.val
-        # elif prev_node.right:
-        #     return prev_node.right.val
 
         return leftmostnode
-
-        
-
 
         

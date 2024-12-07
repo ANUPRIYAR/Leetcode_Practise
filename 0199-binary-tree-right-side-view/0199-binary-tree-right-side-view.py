@@ -9,24 +9,22 @@ class Solution:
         if not root:
             return []
         queue = deque()
-        ans = []
         queue.append(root)
-        
+
+        RightSideNodes = []
         while queue:
-            for _ in range(len(queue)):
+            levelsize = len(queue)
+            for i in range(levelsize):
                 node = queue.popleft()
-                val = node.val
+                if i == levelsize - 1:
+                    RightSideNodes.append(node.val)
 
                 if node.left:
                     queue.append(node.left)
-
                 if node.right:
                     queue.append(node.right)
 
-            ans.append(val)
+        return RightSideNodes
 
-        return ans
-
-                
 
         

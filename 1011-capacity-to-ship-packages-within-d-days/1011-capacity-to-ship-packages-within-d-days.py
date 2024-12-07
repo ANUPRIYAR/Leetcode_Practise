@@ -1,29 +1,25 @@
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
-        
         def can_ship(daily_limit):
-            total_weights= 0
-            d = 1
+            days_reqd = 1
+            current = 0
             for weight in weights:
-                if total_weights + weight > daily_limit:
-                    d += 1
-                    total_weights = weight
+                if current + weight > daily_limit:
+                    days_reqd += 1
+                    current = weight
                 else:
-                    total_weights += weight
-            
-            return d <= days
+                    current += weight
+
+            return days_reqd <= days
 
         left = max(weights)
-        right = sum(weights) * 500
+        right = sum(weights)*500
 
         while left <= right:
-            mid = left + (right - left)//2
+            mid = left + (right- left)//2
             if can_ship(mid):
-                right = mid -1
+                right = mid -1 
             else:
                 left = mid + 1
 
         return left
-
-
-        

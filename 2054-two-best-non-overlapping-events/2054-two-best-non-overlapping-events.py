@@ -1,14 +1,14 @@
 class Solution:
     def maxTwoEvents(self, events: List[List[int]]) -> int:
-        events.sort(key = lambda x: x[1])
+        events.sort(key = lambda x:x[1])
 
-        max_value = 0
         result = 0
+        max_value  = 0
 
         max_until = []
         end_times = []
 
-        for start, end, value in events:
+        for start, end , value in events:
             index = bisect.bisect_left(end_times, start) - 1
             max_previous = max_until[index] if index >= 0 else 0
 
@@ -19,3 +19,6 @@ class Solution:
             end_times.append(end)
 
         return result
+
+
+        

@@ -3,22 +3,28 @@ class Solution:
         outerstack = []
         innerstack = []
 
-        flag = 0
+        bracket = 0
         for char in s:
-            if char == "(":
+            if char == '(':
                 if not outerstack:
                     outerstack.append(char)
                 else:
                     innerstack.append(char)
-                    flag += 1
-            else:
-                if flag:
+                    bracket += 1
+            elif char == ')':
+                if bracket > 0:
                     innerstack.append(char)
-                    flag -= 1
-                else:
+                    bracket -= 1
+                elif outerstack and bracket == 0:
                     outerstack.pop()
 
         return ''.join(innerstack)
 
-            
-           
+
+
+                    
+                
+
+
+
+        
